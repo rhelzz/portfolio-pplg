@@ -1,19 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Logika Menu Mobile (dipindahkan dari index.html) ---
+    // --- Logika Menu Mobile (Baru & Ditingkatkan) ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
 
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+    if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+        mobileMenuButton.addEventListener('click', () => {
+            // Toggle class untuk animasi slide down/up
+            mobileMenu.classList.toggle('menu-open');
+
+            // Ganti ikon menu dengan ikon close (X)
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
         });
     }
+
+    // Tutup menu mobile ketika salah satu link di dalamnya diklik
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('menu-open')) {
+                mobileMenu.classList.remove('menu-open');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    });
+
+    // --- Smooth Scroll untuk semua anchor links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // --- Inisialisasi Ikon Lucide ---
     lucide.createIcons();
@@ -26,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeline = gsap.timeline({ defaults: { duration: 0.7, ease: 'power2.out' } });
 
     timeline
-        .from('header', { y: -100, opacity: 0 })
+        .from('header', { y: -100, autoAlpha: 0 }) // Gunakan autoAlpha untuk mengatasi FOUC (Flash of Unstyled Content)
         .from('#home h1', { y: 50, opacity: 0 }, "-=0.4")
         .from('#home p', { y: 50, opacity: 0 }, "-=0.4")
         .from('#home a', { y: 50, opacity: 0, scale: 0.9 }, "-=0.4");
