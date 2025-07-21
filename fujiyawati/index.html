@@ -50,6 +50,9 @@
             border-top: 4px solid #000;
             border-bottom: 4px solid #000;
         }
+        #mobile-menu.menu-open {
+            transform: translateY(0);
+        }
         @media (max-width: 768px) {
             .section-border {
                 border-width: 2px;
@@ -71,8 +74,8 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8 font-bold">
                     <a href="#home" class="hover:underline">Home</a>
-                    <a href="#work" class="hover:underline">Work</a>
                     <a href="#about" class="hover:underline">About</a>
+                    <a href="#work" class="hover:underline">Work</a>
                     <a href="#process" class="hover:underline">Process</a>
                     <a href="#testimonial" class="hover:underline">Testimonial</a>
                     <a href="#contact" class="hover:underline">Contact</a>
@@ -82,14 +85,15 @@
                 <a href="#contact" class="hidden md:inline-block bg-yellow-400 text-black font-bold px-5 py-2.5 border-2 border-black btn-shadow mr-8">Hire Me</a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden pr-4">
-                    <i data-lucide="menu" class="w-8 h-8"></i>
+                <button id="mobile-menu-button" class="md:hidden pr-4 z-50">
+                    <i id="menu-icon" data-lucide="menu" class="w-8 h-8"></i>
+                    <i id="close-icon" data-lucide="x" class="w-8 h-8 hidden"></i>
                 </button>
             </nav>
-            <div id="mobile-menu" class="hidden md:hidden px-8 pb-4 space-y-2 border-t-2 border-black">
+            <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white px-8 pb-4 space-y-2 border-t-2 border-black transform -translate-y-[150%] transition-transform duration-300 ease-in-out md:hidden">
                 <a href="#home" class="block py-2 font-bold hover:underline">Home</a>
-                <a href="#work" class="block py-2 font-bold hover:underline">Work</a>
                 <a href="#about" class="block py-2 font-bold hover:underline">About</a>
+                <a href="#work" class="block py-2 font-bold hover:underline">Work</a>
                 <a href="#process" class="block py-2 font-bold hover:underline">Process</a>
                 <a href="#testimonial" class="block py-2 font-bold hover:underline">Testimonial</a>
                 <a href="#contact" class="block py-2 font-bold hover:underline">Contact</a>
@@ -103,13 +107,13 @@
             <section id="home" class="py-20 md:py-32 grid-background border-b-4 border-black w-full section-border">
                 <div class="flex flex-col items-center w-full">
                     <div class="w-full max-w-6xl px-6 text-center">
-                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-black leading-none">
+                        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-black leading-none">
                             Hi, I'm John Doe — UI/UX Designer who builds <span class="bg-pink-500 px-2 text-white">RAW</span> & <span class="bg-teal-500 px-2 text-white">BOLD</span> experiences.
                         </h1>
-                        <p class="mt-6 text-lg md:text-xl text-black font-medium">
+                        <p class="mt-6 text-base sm:text-lg md:text-xl text-black font-medium">
                             I craft no-nonsense, user-focused digital products. Function over fluff. Clarity over clutter.<br>Let's build something that works.
                         </p>
-                        <a href="#work" class="mt-10 inline-block bg-lime-400 text-black font-bold px-10 py-4 border-4 border-black btn-shadow text-xl">
+                        <a href="#work" class="mt-10 inline-block bg-lime-400 text-black font-bold px-8 py-4 border-4 border-black btn-shadow text-lg sm:text-xl">
                             SEE MY WORK
                         </a>
                     </div>
@@ -128,7 +132,7 @@
                         </div>
                         <!-- Text Column -->
                         <div class="md:col-span-3">
-                            <h2 class="text-4xl md:text-5xl font-black mb-6">About Me</h2>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-6">About Me</h2>
                             <p class="text-lg font-medium mb-4">
                                 I'm John Doe, a UI/UX designer who believes in radical simplicity. My design philosophy is straightforward: build interfaces that are intuitive, efficient, and brutally honest. I strip away the unnecessary to focus on what truly matters—the user's goal.
                             </p>
@@ -145,8 +149,8 @@
 
             <!-- Selected Projects -->
             <section id="work" class="py-24 md:py-32 w-full section-border bg-purple-50">
-                <h2 class="text-4xl md:text-5xl font-black text-center mb-16 w-full">Selected Projects</h2>
-                <div class="flex flex-wrap justify-center gap-12 w-full px-0">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-16 w-full px-6">Selected Projects</h2>
+                <div class="flex flex-wrap justify-center gap-12 w-full px-6">
                     <!-- Project Card 1 -->
                     <div class="bg-purple-300 p-6 border-4 border-black hard-shadow w-full md:w-[400px]">
                         <img src="https://placehold.co/600x400/1E1B1B/FFFFFF?text=Project+Alpha" alt="Project Thumbnail" class="border-4 border-black mb-6 w-full">
@@ -185,8 +189,8 @@
 
             <!-- Design Process Overview -->
             <section id="process" class="py-24 md:py-32 bg-yellow-300 border-y-4 border-black w-full section-border">
-                <h2 class="text-4xl md:text-5xl font-black text-center mb-16 w-full">My Design Process</h2>
-                <div class="flex flex-wrap justify-center gap-8 w-full px-0">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-16 w-full px-6">My Design Process</h2>
+                <div class="flex flex-wrap justify-center gap-8 w-full px-6">
                     <!-- Step 1 -->
                     <div class="text-center p-6 border-4 border-black bg-white w-full md:w-[320px] hard-shadow">
                         <h3 class="text-2xl font-black mb-2">1. DISCOVER</h3>
@@ -212,7 +216,7 @@
 
             <!-- Tools & Stack -->
             <section id="tools" class="py-24 md:py-32 w-full section-border bg-white">
-                <h2 class="text-4xl md:text-5xl font-black text-center mb-14 w-full">Tools I Use</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-14 w-full">Tools I Use</h2>
                 <div class="w-full px-6 md:px-20 flex flex-col items-center">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
                         <div class="flex flex-col items-center bg-pink-200 border-2 border-black rounded-xl py-4 hard-shadow">
@@ -253,8 +257,8 @@
 
             <!-- Client Testimonials -->
             <section id="testimonial" class="py-24 md:py-32 bg-lime-300 border-y-4 border-black w-full section-border">
-                <h2 class="text-4xl md:text-5xl font-black text-center mb-16 w-full">Straight from the Source</h2>
-                <div class="flex flex-wrap justify-center gap-12 w-full">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-10 w-full px-6">Straight from the Source</h2>
+                <div class="flex flex-wrap justify-center gap-12 w-full px-6">
                     <!-- Testimonial 1 -->
                     <div class="bg-white p-8 border-4 border-black hard-shadow w-full md:w-[480px]">
                         <p class="text-xl font-medium mb-6">
@@ -280,22 +284,21 @@
 
             <!-- Call to Action -->
             <section id="contact" class="py-24 md:py-32 text-center bg-purple-400 border-b-4 border-black w-full section-border">
-                <div class="w-full flex flex-col items-center">
-                    <h2 class="text-4xl md:text-6xl font-black text-black w-full">Got a project?</h2>
+                <div class="w-full flex flex-col items-center px-6">
+                    <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-black w-full">Got a project?</h2>
                     <p class="mt-4 text-xl font-medium w-full">I'm available for new freelance contracts and full-time roles.</p>
                     <a href="mailto:hello@johndoe.com" class="mt-8 inline-block bg-white text-black font-bold px-10 py-4 border-4 border-black btn-shadow text-xl">
                         GET IN TOUCH
                     </a>
                 </div>
             </section>
-
         </main>
 
         <!-- Footer -->
         <footer class="bg-black text-white w-full">
-            <div class="grid md:grid-cols-3 gap-8 py-12 px-0 text-center md:text-left w-full">
+            <div class="grid md:grid-cols-3 gap-8 py-12 px-6 text-center md:text-left w-full">
                 <!-- Left: Logo & Bio -->
-                <div class="pl-8">
+                <div>
                     <h3 class="text-3xl font-black mb-2">JD.</h3>
                     <p class="text-gray-400">Function over fluff. Clarity over clutter.</p>
                 </div>
@@ -304,12 +307,13 @@
                     <h4 class="font-bold mb-4">NAVIGATE</h4>
                     <ul class="space-y-2">
                         <li><a href="#work" class="text-gray-400 hover:text-white">Work</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
                         <li><a href="#process" class="text-gray-400 hover:text-white">Process</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
                     </ul>
                 </div>
                 <!-- Right: Social Media -->
-                <div class="md:text-right pr-8">
+                <div class="md:text-right">
                     <h4 class="font-bold mb-4">CONNECT</h4>
                     <div class="flex justify-center md:justify-end space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="dribbble"></i></a>
