@@ -41,10 +41,19 @@
             box-shadow: 0px 0px 0px #000;
             transform: translate(4px, 4px);
         }
-        .grid-background {
-            background-color: #F3F4F6;
+        .pattern-grid {
             background-image: linear-gradient(rgba(0,0,0, 0.1) 1px, transparent 1px), linear-gradient(to right, rgba(0,0,0, 0.1) 1px, transparent 1px);
             background-size: 2rem 2rem;
+        }
+        .pattern-dots {
+            background-image: radial-gradient(rgba(0,0,0, 0.15) 1.5px, transparent 1.5px);
+            background-size: 1.5rem 1.5rem;
+        }
+        .pattern-diagonal-lines {
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent, transparent 15px, rgba(0, 0, 0, 0.08) 15px, rgba(0, 0, 0, 0.08) 17px
+            );
         }
         .section-border {
             border-top: 4px solid #000;
@@ -71,6 +80,33 @@
             .section-border {
                 border-width: 2px;
             }
+        }
+        /* Marquee Banner Styles */
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        .marquee-container {
+            transform: rotate(-2deg);
+            overflow: hidden;
+            background-color: #facc15; /* Tailwind yellow-400 */
+            border-top: 4px solid #000;
+            border-bottom: 4px solid #000;
+            padding: 1rem 0;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            display: flex;
+        }
+        .marquee {
+            flex-shrink: 0;
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee span {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 900; /* black */
+            text-transform: uppercase;
+            padding: 0 1rem;
         }
     </style>
 </head>
@@ -127,9 +163,9 @@
         <main class="w-full">
 
             <!-- Hero Section -->
-            <section id="home" class="py-20 md:py-32 grid-background border-b-4 border-black w-full section-border">
+            <section id="home" class="pt-20 md:pt-32 bg-gray-100 pattern-grid w-full">
                 <div class="flex flex-col items-center w-full">
-                    <div class="w-full max-w-6xl px-6 text-center">
+                    <div class="w-full max-w-6xl px-6 text-center pb-20 md:pb-24">
                         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-black leading-none">
                             Hi, I'm John Doe — UI/UX Designer who builds <span class="bg-pink-500 px-2 text-white">RAW</span> & <span class="bg-teal-500 px-2 text-white">BOLD</span> experiences.
                         </h1>
@@ -139,6 +175,17 @@
                         <a href="#work" class="mt-10 inline-block bg-lime-400 text-black font-bold px-8 py-4 border-4 border-black btn-shadow text-lg sm:text-xl">
                             SEE MY WORK
                         </a>
+                    </div>
+                </div>
+                <!-- Marquee Banner -->
+                <div class="marquee-container">
+                    <div class="marquee">
+                        <span>RAW & BOLD DESIGN &nbsp;•&nbsp; FUNCTION OVER FLUFF &nbsp;•&nbsp;</span>
+                        <span>RAW & BOLD DESIGN &nbsp;•&nbsp; FUNCTION OVER FLUFF &nbsp;•&nbsp;</span>
+                    </div>
+                    <div class="marquee" aria-hidden="true">
+                        <span>RAW & BOLD DESIGN &nbsp;•&nbsp; FUNCTION OVER FLUFF &nbsp;•&nbsp;</span>
+                        <span>RAW & BOLD DESIGN &nbsp;•&nbsp; FUNCTION OVER FLUFF &nbsp;•&nbsp;</span>
                     </div>
                 </div>
             </section>
@@ -171,7 +218,7 @@
             </section>
 
             <!-- Resume / Experience Section -->
-            <section id="resume" class="py-24 md:py-32 w-full section-border bg-orange-100">
+            <section id="resume" class="py-24 md:py-32 w-full section-border bg-orange-100 pattern-dots">
                 <div class="max-w-6xl mx-auto px-6">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-16">My Experience</h2>
                     <div class="border-4 border-black bg-white p-8 hard-shadow space-y-12">
@@ -217,7 +264,7 @@
             </section>
 
             <!-- Selected Projects -->
-            <section id="work" class="py-24 md:py-32 w-full section-border bg-purple-50">
+            <section id="work" class="py-24 md:py-32 w-full section-border bg-purple-50 pattern-diagonal-lines">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-16 w-full px-6">Selected Projects</h2>
                 <div class="flex flex-wrap justify-center gap-12 w-full px-6">
                     <!-- Project Card 1 -->
@@ -257,7 +304,7 @@
             </section>
 
             <!-- Design Process Overview -->
-            <section id="process" class="py-24 md:py-32 bg-yellow-300 border-y-4 border-black w-full section-border">
+            <section id="process" class="py-24 md:py-32 bg-yellow-300 pattern-grid border-y-4 border-black w-full section-border">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-16 w-full px-6">My Design Process</h2>
                 <div class="flex flex-wrap justify-center gap-8 w-full px-6">
                     <!-- Step 1 -->
@@ -325,7 +372,7 @@
             </section>
 
             <!-- Client Testimonials -->
-            <section id="testimonial" class="py-24 md:py-32 bg-lime-300 border-y-4 border-black w-full section-border">
+            <section id="testimonial" class="py-24 md:py-32 bg-lime-300 pattern-dots border-y-4 border-black w-full section-border">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-center mb-10 md:mb-16 w-full px-6">Straight from the Source</h2>
                 <div class="flex flex-wrap justify-center gap-12 w-full px-6">
                     <!-- Testimonial 1 -->
